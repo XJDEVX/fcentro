@@ -408,7 +408,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 DELETE FROM `usuarios`;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
 INSERT INTO `usuarios` (`id`, `cedula`, `nombre`, `direccion`, `telefono`, `celular`, `email`, `barrio`, `ciudad`, `username`, `password`, `rol`, `entrada`, `salida`, `foto`, `estado`) VALUES
-	(1, '12345678', 'Administrador del Sistema ', 'Direccion del usuario', '', '0986236788', 'fghfghfg', 'Barrio San Blas', 'Coronel Bogado', 'admin', '835d6dc88b708bc646d6db82c853ef4182fabbd4a8de59c213f2b5ab3ae7d9be', 'A', '2022-06-01 17:35:58', '2022-06-01 17:35:51', '', '1'),
+	(1, '12345678', 'Administrador del Sistema ', 'Direccion del usuario', '', '0986236788', 'fghfghfg', 'Barrio San Blas', 'Coronel Bogado', 'admin', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'A', '2022-06-13 15:18:26', '2022-06-01 17:35:51', '', '1'),
 	(2, '53453453453', 'Nuevo Usuario', '', '', '', NULL, '', '', 'empleado', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 'C', '2021-08-27 18:23:19', '2021-07-15 22:07:17', NULL, '1');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 

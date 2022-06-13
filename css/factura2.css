@@ -1,0 +1,199 @@
+.invoice {
+    min-width: 20.5cm !important;
+    max-width: 20.5cm !important;
+    min-height: 15.7cm !important;
+    max-height: 15.7cm !important;
+    position: relative;
+    margin: 0 !important;
+    border: 1px solid #000000;
+}
+.invHeader {
+    min-width: 20.5cm !important;
+    max-width: 20.5cm !important;
+    min-height: 2.2cm !important;
+    max-height: 2.2cm !important;
+    border-bottom: 1px solid #000000;
+}
+.invoiceBuss {
+    min-width: 14cm !important;
+    max-width: 14cm !important;
+    min-height: 2.2cm !important;
+    max-height: 2.2cm !important;
+    border-right: 1px solid #000000;
+}
+.invoiceTimbrado {
+    min-width: 6.6cm !important;
+    max-width: 6.6cm !important;
+    min-height: 2.2cm !important;
+    max-height: 2.2cm !important;
+}
+.detalles {
+    min-height: 1.3cm !important;
+    max-height: 1.3cm !important;
+   
+    font-size: 6px !important;
+    text-transform: uppercase;
+    padding: 3mm;
+
+    border-bottom: 1px solid #000000;
+}
+.detalles label {
+    font-size: 10px !important;
+}
+.detallesFlex {
+    display: flex;
+    align-content: space-around;
+    /* padding-left: 3px;
+    padding-right: 3px; */
+    font-size: 6px !important;
+    min-height: 1.3cm !important;
+    max-height: 1.3cm !important;
+}
+.fecha {
+    width: 438px;
+    /* margin-top: -1mm; */
+}
+.contadoP {
+    margin-left: 2mm;
+    margin-top: -.2mm;
+}
+.condicion {
+    margin-left: 2.2cm;
+}
+.condicion label {
+    display: flex;
+}
+.detallesCliente {
+    display: flex;
+    margin-top: -7.5mm;
+}
+.detallesCliente .nombreCliente {
+    width: 8cm;
+    margin-left: 0px !important;
+}
+.detallesCliente .ruc {
+    margin-left: 5.8cm;
+    /* margin-top: 1mm; */
+    
+}
+.detallesDireccion {
+    margin-top: -1mm;
+}
+
+/* table {
+    min-width: 20.5cm !important;
+    max-width: 20.5cm !important;
+    min-height: 9.9cm !important;
+    max-height: 9.9cm !important;
+} */
+table {
+    min-width: 100%;
+    max-width: 100%;
+}
+tbody tr {
+    line-height: 10px !important;
+}
+thead tr th {
+    font-size: 10px !important;
+}
+/* TABLA DETALLE  */
+
+
+table td {
+    font-size: 8.4px !important;
+    letter-spacing: 0cm;
+    /*text-transform: uppercase !important;
+    
+    margin-top: 0 !important;
+    -webkit-margin-top: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    height: auto; */
+    
+    
+}
+
+
+.tablaCant {
+    width: 1.6cm !important;
+   
+    /* height: 2px; */
+}
+.tablaProd {
+    width: 6.8cm !important;
+}
+.tablaPrec {
+    width: 1.5cm !important;
+}
+.tablaExcenta {
+    width: 2cm !important;
+}
+.tablaCinco {
+    width: 2cm !important;
+    text-align: center;
+}
+.tablaDiez {
+    width: 3.2cm !important;
+    text-align: center;
+}
+
+
+table th {
+    max-height: 8mm !important;
+    min-height: 8mm !important;
+    border-bottom: 1px solid #000000;
+    /* color: transparent !important; */
+}
+
+.parcial {
+    position: absolute;
+    top: 11.1cm;
+    /* margin-top:  */
+    display: flex;
+    left: 12.5cm;
+}
+.parcial5 {
+    /* margin-left: 12.5cm !important; */
+    width: 2cm !important;
+    font-size: 9px !important;
+}
+.parcial10 {
+    width: 3.2cm !important;
+    font-size: 9px !important;
+}
+
+.enLetras {
+    position: absolute;
+    top: 11.7cm !important;
+    left: 6cm !important;
+    font-size: 10px !important;
+}
+
+.totalP {
+    position: absolute;
+    top: 12cm !important;
+    left: 14cm !important;
+    font-size: 16px !important;
+}
+
+.totalesIva {
+    position: absolute;
+    top: 12.7cm !important;
+    left: 4.5cm !important;
+    display: flex;
+    font-size: 10px !important;
+}
+.totalesIva .totales5 {
+    width: 3.6cm !important;
+    margin-left: 6mm !important;
+}
+.totalesIva .totales10 {
+    width: 3.6cm !important;
+    margin-left: 8mm !important;
+}
+
+.totalesIva .totales {
+    width: 4.2cm !important;
+    margin-left: 1.3cm !important;
+}
+

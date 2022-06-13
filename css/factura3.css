@@ -1,0 +1,255 @@
+.invoice {
+    min-width: 20.6cm !important;
+    max-width: 25.4cm !important;
+    min-height: 30cm !important;
+    /* min-height: 19.3cm !important; */
+
+    /* max-height: 22cm !important; */
+    position: relative;
+    margin: 0 !important;
+    border: 1px solid transparent;
+    padding-top: 2.5mm;
+}
+.invHeader {
+    min-width: 20.5cm !important;
+    max-width: 20.5cm !important;
+    min-height: 3cm !important;
+    max-height: 3cm !important;
+    border-bottom: 1px solid transparent;
+}
+.invoiceBuss {
+    min-width: 13.1cm !important;
+    max-width: 13.1cm !important;
+    min-height: 3cm !important;
+    max-height: 3cm !important;
+    border-right: 1px solid transparent;
+}
+.invoiceTimbrado {
+    min-width: 7.3cm !important;
+    max-width: 7.3cm !important;
+    min-height: 3cm !important;
+    max-height: 3cm !important;
+}
+.detalles {
+    min-height: 2.3cm !important;
+    max-height: 2.3cm !important;
+   margin-top: 5px !important;
+    font-size: 6px !important;
+    text-transform: uppercase;
+    padding: 3mm;
+    border-bottom: 1px solid transparent;
+}
+.detalles label {
+    font-size: 16px !important;
+    letter-spacing: 1.5px;
+}
+.detallesFlex {
+    display: flex;
+    align-content: space-around;
+    /* padding-left: 3px;
+    padding-right: 3px; */
+    font-size: 6px !important;
+    min-height: 2.3cm !important;
+    max-height: 2.3cm !important;
+    margin-top: 8px !important;
+}
+.fecha {
+    width: 600px;
+    height: 5mm;
+    margin-top: 1mm;
+}
+.fecha label {
+    padding-left: 18px !important;
+}
+.contadoP {
+    margin-left: -25mm;
+    margin-top: 8px;
+    font-size: 18px;
+    padding-left: 70px !important;
+}
+.contadoP.credito {
+    padding-left: 305px !important;
+}
+.condicion {
+    margin-left: 7.2cm;
+}
+.condicion label {
+    display: flex;
+
+}
+.detallesCliente {
+    display: flex;
+    margin-top: -17.5mm;
+    align-items: center;
+    width: 100%;
+}
+.detallesCliente .nombreCliente {
+    /* min-width: 8cm; */
+    width: 80%;
+    margin-left: 0px !important;
+    padding-left: 10px !important;
+
+}
+.nombreCliente label {
+    /* padding-left: 10px !important; */
+    margin-bottom: 4px !important;
+}
+.detallesCliente .ruc {
+    /* margin-left: 8cm; */
+    width: 20%;
+    padding-left: 221px !important;
+    /* margin-top: 1mm; */
+    
+}
+.ruc label {
+    padding-left: 45px !important;
+    margin-bottom: 4px !important;
+    line-height: 5px;
+    font-size: 17.2px !important;
+}
+.detallesDireccion {
+    margin-top: 1.5mm;
+}
+.detallesDireccion label {
+    padding-top: 8px !important;
+    padding-left: 22px !important;
+}
+
+/* table {
+    min-width: 20.5cm !important;
+    max-width: 20.5cm !important;
+    min-height: 9.9cm !important;
+    max-height: 9.9cm !important;
+} */
+.invoice table {
+    min-width: 100%;
+    max-width: 100%;
+    margin-top: 20px !important;
+
+}
+.invoice tbody tr {
+    line-height: 14px !important;
+}
+.invoice thead tr th {
+    font-size: 10px !important;
+    padding-top: 10px !important;
+}
+/* TABLA DETALLE  */
+
+
+.invoice table td {
+    font-size: 19px !important;
+    letter-spacing: 1px;
+    line-height: 18px;
+    /*text-transform: uppercase !important;
+    
+    margin-top: 0 !important;
+    -webkit-margin-top: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    height: auto; */
+    
+    
+}
+.tablaCant {
+    max-width: 1.2cm !important;
+    min-width: 1.2cm !important;
+    /* height: 2px; */
+}
+.tablaProd {
+    max-width: 12.7cm !important;
+    min-width: 12.7cm !important;
+}
+.tablaPrec {
+    max-width: 2.7cm !important;
+    min-width: 2.7cm !important;
+    padding-left: 9mm !important;
+
+}
+.tablaExcenta {
+    max-width: 1.7cm !important;
+    min-width: 1.7cm !important;
+}
+.tablaCinco {
+    max-width: 2.5cm !important;
+    min-width: 2.5cm !important;
+    padding-left: 30px !important;
+    text-align: center;
+}
+.tablaDiez {
+    max-width: 2.6cm !important;
+    min-width: 2.6cm !important;
+
+    text-align: center;
+}
+table th {
+    max-height: 8mm !important;
+    min-height: 8mm !important;
+    border-bottom: 1px solid transparent;
+    /* color: transparent !important; */
+}
+.parcial {
+    position: absolute;
+    top: 20.5cm;
+    /* margin-top:  */
+    display: flex;
+    left: 13.4cm;
+    margin-left: 18px;
+}
+.parcial p {
+    font-size: 22px !important;
+}
+.parcialExentas {
+    width: 1.7cm !important;
+    font-size: 9px !important;
+}
+.parcial5 {
+    margin-left: 4.5cm !important;
+    width: 2.5cm !important;
+    font-size: 9px !important;
+    padding-left: 8mm !important;
+    /* left: 16cm; */
+}
+.parcial10 {
+    width: 3.2cm !important;
+    font-size: 9px !important;
+    left: 17cm;
+}
+
+.enLetras {
+    position: absolute;
+    top: 21cm !important;
+    left: 6cm !important;
+    font-size: 12.5px !important;
+    padding-top: 25px !important;
+}
+
+.totalP {
+    position: absolute;
+    top: 21cm !important;
+    left: 19.8cm !important;
+    font-size: 25px !important;
+    margin-left: 8px !important;
+    padding-left: 4mm !important;
+    padding-top: 20px !important;
+}
+.totalesIva {
+    position: absolute;
+    top: 24.5cm !important;
+    left: 5.5cm !important;
+    display: flex;
+    font-size: 15px !important;
+    padding-top: 10px !important;
+}
+.totalesIva .totales5 {
+    width: 3.6cm !important;
+    margin-left: 4mm !important;
+}
+.totalesIva .totales10 {
+    width: 3.6cm !important;
+    margin-left: 4mm !important;
+}
+.totalesIva .totales {
+    width: 2.2cm !important;
+    margin-left: 1.7cm !important;
+}

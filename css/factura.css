@@ -1,0 +1,147 @@
+.invoice {
+    min-width: 17.4cm !important;
+    max-width: 17.4cm !important;
+    position: relative;
+}
+.parcial {
+    position: absolute;
+    top: 11.1cm;
+    /* margin-top:  */
+    display: flex;
+    left: 12.5cm;
+}
+.parcial5 {
+    /* margin-left: 12.5cm !important; */
+    width: 2cm !important;
+    font-size: 9px !important;
+}
+.parcial10 {
+    width: 3.2cm !important;
+    font-size: 9px !important;
+}
+
+.enLetras {
+    position: absolute;
+    top: 11.7cm !important;
+    left: 6cm !important;
+    font-size: 10px !important;
+}
+
+.totalP {
+    position: absolute;
+    top: 12cm !important;
+    left: 14cm !important;
+    font-size: 16px !important;
+}
+
+.totalesIva {
+    position: absolute;
+    top: 12.7cm !important;
+    left: 4.5cm !important;
+    display: flex;
+    font-size: 10px !important;
+}
+.totalesIva .totales5 {
+    width: 3.6cm !important;
+    margin-left: 6mm !important;
+}
+.totalesIva .totales10 {
+    width: 3.6cm !important;
+    margin-left: 8mm !important;
+}
+
+.totalesIva .totales {
+    width: 4.2cm !important;
+    margin-left: 1.3cm !important;
+}
+
+.invHeader {
+    display: flex;
+    align-content: space-between;
+    height: 3.8cm;
+    color: transparent !important;
+
+
+}
+.invoiceBuss {
+    border: 1px solid transparent;
+    width: 11.6cm;
+    color: transparent !important;
+}
+.invoiceBuss h1 {
+    color: transparent !important;
+}
+.invoiceTimbrado {
+    border: 1px solid transparent;
+    width: 6cm !important;
+}
+.detalles {
+    margin-top: 1mm;
+    height: 58px;
+    border: 1px solid transparent;
+}
+.detallesFlex {
+    display: flex;
+    align-content: space-around;
+    padding-left: 3px;
+    padding-right: 3px;
+}
+.fecha {
+    width: 438px;
+    margin-top: -1mm;
+}
+.contadoP {
+    margin-left: 2cm;
+    margin-top: -1mm;
+}
+.condicion {
+    display: inline;
+}
+.detallesCliente {
+    display: flex;
+    margin-top: -3mm;
+}
+.detallesCliente .nombreCliente {
+    width: 8cm;
+    margin-left: 6mm;
+}
+.detallesCliente .ruc {
+    margin-left: 3.5cm;
+    margin-top: 1mm;
+    
+}
+
+.detallesDireccion {
+    margin-top: -1mm;
+}
+
+/* TABLA DETALLE  */
+table td {
+    font-size: 9px !important;
+}
+.tablaCant {
+    width: 2cm !important;
+}
+.tablaProd {
+    width: 6.8cm !important;
+}
+.tablaPrec {
+    width: 1.5cm !important;
+}
+.tablaExcenta {
+    width: 2cm !important;
+}
+.tablaCinco {
+    width: 2cm !important;
+    text-align: center;
+}
+.tablaDiez {
+    width: 3.2cm !important;
+    text-align: center;
+}
+
+
+table th {
+    height: 1cm !important;
+    color: transparent !important;
+}

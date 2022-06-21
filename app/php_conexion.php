@@ -3,7 +3,7 @@ $con = new mysqli(
 	'localhost',
 	'root',
 	'',
-	'fcentro'
+	'fcentro_credit_db'
 );
 $con->query("SET NAMES 'utf-8'");
 if ($con->connect_errno) {

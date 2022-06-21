@@ -450,7 +450,10 @@ require_once "partials/header.php";
                             <div class="row justify-content-center">
                                 <div class="col-md-4"></div>
                                 <div class="col-md-4">
-                                    <a href="#myContado" role="button" class="btn btn-block btn-success btn-lg" id="bt" data-toggle="modal"><i class="fa fa-shopping-cart"></i> VENDER!</a>
+                                    <!-- <a href="#myContado" role="button" class="btn btn-block btn-success btn-lg" id="bt" data-toggle="modal"><i class="fa fa-shopping-cart"></i> VENDER!</a> -->
+
+                                    <a href="procesarCredito.php" class="btn btn-block btn-success btn-lg" target="admin"><i class="fa fa-shopping-cart"></i> Proceder a los detalles</a>
+
                                     <!-- este es el codigo que realiza la funcion print con el teclado-->
                                     <script type="text/javascript">
                                         document.onkeydown = function(e) {
@@ -830,17 +833,6 @@ require_once "partials/header.php";
         })
 
 
-
-        // $('#tags').on('input', function () {
-        //     // if ($('#tags').val() == 'BASIC') {
-        //     console.log($('#tags').val());
-        //     const image = document.getElementById('preview')
-        //     image.setAttribute('src', 'articulo/producto.png')
-        //     // }
-        // })
-
-
-
         let tbodys = document.querySelectorAll('tbody tr')
         tbodys.forEach(element => {
             console.log($(`#${element.id}`).attr('data-id'))
@@ -853,12 +845,6 @@ require_once "partials/header.php";
                 venta.focus()
             })
         })
-
-
-
-        // $('#codigo .list-span').on('mouseover', function () {
-        //     alert("Evento de Hover")
-        // })
 
 
 

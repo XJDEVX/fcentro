@@ -6,9 +6,33 @@ use Carbon\Carbon;
 
 $actionRequest = isset($_GET['request']) ? $_GET['request'] : '';
 switch ($actionRequest) {
+    case 'reject-invoices':
+        $sql = "SELECT * FROM factura WHERE estado = 'Anulado' LIMIT 10";
+        $result = querySimple($sql);
+        $invoices = [];
+        while ($row = $result->fetch_assoc()) {
+            $invoices[] = $row;
+        }
+        echo json_encode(['invoices' => $invoices]);
+        break;
+    case 'invoices':
+        $dataPerPage = isset($_GET['per-page']) ? $_GET['per-page'] : 5;
+        $offsetValue = isset($_GET['offset']) ? $_GET['offset'] : 0;
+        $sql = "SELECT d.factura as factura, f.cajera as cajero, f.nombrecli as cliente, f.estado, f.fecha, f.total
+        FROM (
+            SELECT factura FROM detalle GROUP BY factura
+        )
+        as d INNER JOIN factura f ON d.factura=f.factura LIMIT $dataPerPage OFFSET $offsetValue";
+        $result = querySimple($sql);
+        $invoices = array();
+        while ($row = $result->fetch_assoc()) {
+            $invoices[] = $row;
+        }
+        // $number_of_result = mysqli_num_rows($result);
+        // $number_of_page = ceil($number_of_result / $dataPerPage);
+        echo json_encode(['invoices' => $invoices]);
+        break;
     case 'allInvoices':
-        // $sql = "SELECT d.id, d.factura as factura, f.cajera as cajero, f.nombrecli as cliente, f.estado, f.fecha, d.tipo, d.total
-        // FROM detalle d INNER JOIN factura f ON d.factura=f.factura GROUP BY factura";
         $sql = "SELECT d.factura as factura, f.cajera as cajero, f.nombrecli as cliente, f.estado, f.fecha, f.total
         FROM (
             SELECT factura FROM detalle GROUP BY factura

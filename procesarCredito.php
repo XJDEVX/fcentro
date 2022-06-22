@@ -5,9 +5,7 @@ if (strlen(session_id()) < 1) {
 }
 require 'app/php_conexion.php';
 
-if ($_SESSION['rol'] !== 'Administrador' && $_SESSION['rol'] !== 'Empleado') {
-    header('location:error.php');
-}
+require_once 'helper/sessionCheck.php';
 require_once 'partials/header.php'; ?>
 </head>
 
@@ -155,153 +153,198 @@ require_once 'partials/header.php'; ?>
          const percent = 100
         cuotas.addEventListener('input', () => {
             const cuotaValue = parseInt(cuotas.value)
+
+            const numOfCuotas = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]
             let actionPercent, action
-            switch (cuotaValue) {
-                case 1:
+
+            if (cuotaValue > 0 && cuotaValue <= numOfCuotas.length) {
+                if( cuotaValue <= 4 ) {
                     interes.value = 0
                     actionPercent = parseInt(percent) + parseInt(interes.value)
                     action = parseInt((tPagar.value * actionPercent) / 100)
                     montoInteres.value = action
-                    break;
-                case 2:
-                    interes.value = 0
-                    actionPercent = parseInt(percent) + parseInt(interes.value)
-                    action = parseInt((tPagar.value * actionPercent) / 100)
-                    montoInteres.value = action
-                    break;
-                case 3:
-                    interes.value = 0
-                    actionPercent = parseInt(percent) + parseInt(interes.value)
-                    action = parseInt((tPagar.value * actionPercent) / 100)
-                    montoInteres.value = action
-                    break;
-                case 4:
-                    interes.value = 0
-                    actionPercent = parseInt(percent) + parseInt(interes.value)
-                    action = parseInt((tPagar.value * actionPercent) / 100)
-                    montoInteres.value = action
-                    break;
-                case 5:
-                    interes.value = 15
-                    actionPercent = parseInt(percent) + parseInt(interes.value)
-                    action = parseInt((tPagar.value * actionPercent) / 100)
-                    montoInteres.value = action
-                    break;
-                case 6:
-                    interes.value = 18
-                    actionPercent = parseInt(percent) + parseInt(interes.value)
-                    action = parseInt((tPagar.value * actionPercent) / 100)
-                    montoInteres.value = action
-                    break;
-                case 7:
-                    interes.value = 21
-                    actionPercent = parseInt(percent) + parseInt(interes.value)
-                    action = parseInt((tPagar.value * actionPercent) / 100)
-                    montoInteres.value = action
-                    break;
-                case 8:
-                    interes.value = 24
-                    actionPercent = parseInt(percent) + parseInt(interes.value)
-                    action = parseInt((tPagar.value * actionPercent) / 100)
-                    montoInteres.value = action
-                    break;
-                case 9:
-                    interes.value = 27
-                    actionPercent = parseInt(percent) + parseInt(interes.value)
-                    action = parseInt((tPagar.value * actionPercent) / 100)
-                    montoInteres.value = action
-                    break;
-                case 10:
-                    interes.value = 30
-                    actionPercent = parseInt(percent) + parseInt(interes.value)
-                    action = parseInt((tPagar.value * actionPercent) / 100)
-                    montoInteres.value = action
-                    break;
-                case 11:
-                    interes.value = 33
-                    actionPercent = parseInt(percent) + parseInt(interes.value)
-                    action = parseInt((tPagar.value * actionPercent) / 100)
-                    montoInteres.value = action
-                    break;
-                case 12:
-                    interes.value = 36
-                    actionPercent = parseInt(percent) + parseInt(interes.value)
-                    action = parseInt((tPagar.value * actionPercent) / 100)
-                    montoInteres.value = action
-                    break;
-                case 13:
-                    interes.value = 39
-                    actionPercent = parseInt(percent) + parseInt(interes.value)
-                    action = parseInt((tPagar.value * actionPercent) / 100)
-                    montoInteres.value = action
-                    break;
-                case 14:
-                    interes.value = 42
-                    actionPercent = parseInt(percent) + parseInt(interes.value)
-                    action = parseInt((tPagar.value * actionPercent) / 100)
-                    montoInteres.value = action
-                    break;
-                case 15:
-                    interes.value = 45
-                    actionPercent = parseInt(percent) + parseInt(interes.value)
-                    action = parseInt((tPagar.value * actionPercent) / 100)
-                    montoInteres.value = action
-                    break;
-                case 16:
-                    interes.value = 48
-                    actionPercent = parseInt(percent) + parseInt(interes.value)
-                    action = parseInt((tPagar.value * actionPercent) / 100)
-                    montoInteres.value = action
-                    break;
-                case 17:
-                    interes.value = 51
-                    actionPercent = parseInt(percent) + parseInt(interes.value)
-                    action = parseInt((tPagar.value * actionPercent) / 100)
-                    montoInteres.value = action
-                    break;
-                case 18:
-                    interes.value = 54
-                    actionPercent = parseInt(percent) + parseInt(interes.value)
-                    action = parseInt((tPagar.value * actionPercent) / 100)
-                    montoInteres.value = action
-                    break;
-                case 19:
-                    interes.value = 57
-                    actionPercent = parseInt(percent) + parseInt(interes.value)
-                    action = parseInt((tPagar.value * actionPercent) / 100)
-                    montoInteres.value = action
-                    break;
-                case 20:
-                    interes.value = 60
-                    actionPercent = parseInt(percent) + parseInt(interes.value)
-                    action = parseInt((tPagar.value * actionPercent) / 100)
-                    montoInteres.value = action
-                    break;
-                case 21:
-                    interes.value = 63
-                    actionPercent = parseInt(percent) + parseInt(interes.value)
-                    action = parseInt((tPagar.value * actionPercent) / 100)
-                    montoInteres.value = action
-                    break;
-                case 22:
-                    interes.value = 66
-                    actionPercent = parseInt(percent) + parseInt(interes.value)
-                    action = parseInt((tPagar.value * actionPercent) / 100)
-                    montoInteres.value = action
-                    break;
-                case 23:
-                    interes.value = 69
-                    actionPercent = parseInt(percent) + parseInt(interes.value)
-                    action = parseInt((tPagar.value * actionPercent) / 100)
-                    montoInteres.value = action
-                    break;
-                case 24:
-                    interes.value = 72
-                    actionPercent = parseInt(percent) + parseInt(interes.value)
-                    action = parseInt((tPagar.value * actionPercent) / 100)
-                    montoInteres.value = action
-                    break;
+                }
+
+                for (let index = 5; index < numOfCuotas.length; index++) {
+                    if( cuotaValue == index ) {
+                        interes.value = 5
+                        actionPercent = parseInt(percent) + parseInt(interes.value)
+                        action = parseInt((tPagar.value * actionPercent) / 100)
+                        montoInteres.value = action
+                    }
+
+                }
+
+                // if( cuotaValue >= 5 ) {
+                //     interes.value = 5
+                //     actionPercent = parseInt(percent) + parseInt(interes.value)
+                //     action = parseInt((tPagar.value * actionPercent) / 100)
+                //     montoInteres.value = action
+                // }
             }
+
+            // numOfCuotas.forEach( num => {
+            //     if (num <= 4) {
+            //         interes.value = 0
+            //         actionPercent = parseInt(percent) + parseInt(interes.value)
+            //         action = parseInt((tPagar.value * actionPercent) / 100)
+            //         montoInteres.value = action
+            //     }
+            //     if (num > 4) {
+            //         interes.value = 5
+            //         actionPercent = parseInt(percent) + parseInt(interes.value)
+            //         action = parseInt((tPagar.value * actionPercent) / 100)
+            //         montoInteres.value = action
+            //     }
+            // })
+
+
+            // switch (cuotaValue) {
+            //     case 1:
+            //         interes.value = 0
+            //         actionPercent = parseInt(percent) + parseInt(interes.value)
+            //         action = parseInt((tPagar.value * actionPercent) / 100)
+            //         montoInteres.value = action
+            //         break;
+            //     case 2:
+            //         interes.value = 0
+            //         actionPercent = parseInt(percent) + parseInt(interes.value)
+            //         action = parseInt((tPagar.value * actionPercent) / 100)
+            //         montoInteres.value = action
+            //         break;
+            //     case 3:
+            //         interes.value = 0
+            //         actionPercent = parseInt(percent) + parseInt(interes.value)
+            //         action = parseInt((tPagar.value * actionPercent) / 100)
+            //         montoInteres.value = action
+            //         break;
+            //     case 4:
+            //         interes.value = 0
+            //         actionPercent = parseInt(percent) + parseInt(interes.value)
+            //         action = parseInt((tPagar.value * actionPercent) / 100)
+            //         montoInteres.value = action
+            //         break;
+            //     case 5:
+            //         interes.value = 15
+            //         actionPercent = parseInt(percent) + parseInt(interes.value)
+            //         action = parseInt((tPagar.value * actionPercent) / 100)
+            //         montoInteres.value = action
+            //         break;
+            //     case 6:
+            //         interes.value = 18
+            //         actionPercent = parseInt(percent) + parseInt(interes.value)
+            //         action = parseInt((tPagar.value * actionPercent) / 100)
+            //         montoInteres.value = action
+            //         break;
+            //     case 7:
+            //         interes.value = 21
+            //         actionPercent = parseInt(percent) + parseInt(interes.value)
+            //         action = parseInt((tPagar.value * actionPercent) / 100)
+            //         montoInteres.value = action
+            //         break;
+            //     case 8:
+            //         interes.value = 24
+            //         actionPercent = parseInt(percent) + parseInt(interes.value)
+            //         action = parseInt((tPagar.value * actionPercent) / 100)
+            //         montoInteres.value = action
+            //         break;
+            //     case 9:
+            //         interes.value = 27
+            //         actionPercent = parseInt(percent) + parseInt(interes.value)
+            //         action = parseInt((tPagar.value * actionPercent) / 100)
+            //         montoInteres.value = action
+            //         break;
+            //     case 10:
+            //         interes.value = 30
+            //         actionPercent = parseInt(percent) + parseInt(interes.value)
+            //         action = parseInt((tPagar.value * actionPercent) / 100)
+            //         montoInteres.value = action
+            //         break;
+            //     case 11:
+            //         interes.value = 33
+            //         actionPercent = parseInt(percent) + parseInt(interes.value)
+            //         action = parseInt((tPagar.value * actionPercent) / 100)
+            //         montoInteres.value = action
+            //         break;
+            //     case 12:
+            //         interes.value = 36
+            //         actionPercent = parseInt(percent) + parseInt(interes.value)
+            //         action = parseInt((tPagar.value * actionPercent) / 100)
+            //         montoInteres.value = action
+            //         break;
+            //     case 13:
+            //         interes.value = 39
+            //         actionPercent = parseInt(percent) + parseInt(interes.value)
+            //         action = parseInt((tPagar.value * actionPercent) / 100)
+            //         montoInteres.value = action
+            //         break;
+            //     case 14:
+            //         interes.value = 42
+            //         actionPercent = parseInt(percent) + parseInt(interes.value)
+            //         action = parseInt((tPagar.value * actionPercent) / 100)
+            //         montoInteres.value = action
+            //         break;
+            //     case 15:
+            //         interes.value = 45
+            //         actionPercent = parseInt(percent) + parseInt(interes.value)
+            //         action = parseInt((tPagar.value * actionPercent) / 100)
+            //         montoInteres.value = action
+            //         break;
+            //     case 16:
+            //         interes.value = 48
+            //         actionPercent = parseInt(percent) + parseInt(interes.value)
+            //         action = parseInt((tPagar.value * actionPercent) / 100)
+            //         montoInteres.value = action
+            //         break;
+            //     case 17:
+            //         interes.value = 51
+            //         actionPercent = parseInt(percent) + parseInt(interes.value)
+            //         action = parseInt((tPagar.value * actionPercent) / 100)
+            //         montoInteres.value = action
+            //         break;
+            //     case 18:
+            //         interes.value = 54
+            //         actionPercent = parseInt(percent) + parseInt(interes.value)
+            //         action = parseInt((tPagar.value * actionPercent) / 100)
+            //         montoInteres.value = action
+            //         break;
+            //     case 19:
+            //         interes.value = 57
+            //         actionPercent = parseInt(percent) + parseInt(interes.value)
+            //         action = parseInt((tPagar.value * actionPercent) / 100)
+            //         montoInteres.value = action
+            //         break;
+            //     case 20:
+            //         interes.value = 60
+            //         actionPercent = parseInt(percent) + parseInt(interes.value)
+            //         action = parseInt((tPagar.value * actionPercent) / 100)
+            //         montoInteres.value = action
+            //         break;
+            //     case 21:
+            //         interes.value = 63
+            //         actionPercent = parseInt(percent) + parseInt(interes.value)
+            //         action = parseInt((tPagar.value * actionPercent) / 100)
+            //         montoInteres.value = action
+            //         break;
+            //     case 22:
+            //         interes.value = 66
+            //         actionPercent = parseInt(percent) + parseInt(interes.value)
+            //         action = parseInt((tPagar.value * actionPercent) / 100)
+            //         montoInteres.value = action
+            //         break;
+            //     case 23:
+            //         interes.value = 69
+            //         actionPercent = parseInt(percent) + parseInt(interes.value)
+            //         action = parseInt((tPagar.value * actionPercent) / 100)
+            //         montoInteres.value = action
+            //         break;
+            //     case 24:
+            //         interes.value = 72
+            //         actionPercent = parseInt(percent) + parseInt(interes.value)
+            //         action = parseInt((tPagar.value * actionPercent) / 100)
+            //         montoInteres.value = action
+            //         break;
+            // }
 
             const calcMontoValue = Math.round(parseInt(montoInteres.value / cuotaValue))
             montoPorCuota.value = calcMontoValue
@@ -316,6 +359,7 @@ require_once 'partials/header.php'; ?>
                 $('#no_entrega').attr('checked', true)
                 primeraEntrega.value = 0
             })
+
 
         })
 

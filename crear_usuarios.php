@@ -60,7 +60,7 @@ require_once('partials/header.php'); ?>
       $can = querySimple("SELECT * FROM usuarios WHERE id=$id");
       if ($dato = mysqli_fetch_array($can)) {
         if ($boton == 'Actualizar Usuario') {
-          $xSQL = "UPDATE usuarios 
+          $xSQL = "UPDATE usuarios
           SET cedula='$cedula', nombre='$nombre',direccion='$direccion',telefono='$telefono',
           celular='$celular',barrio='$barrio',
           username='$usuario',ciudad='$ciudad', password='$contra', rol='$tipo'
@@ -76,8 +76,8 @@ require_once('partials/header.php'); ?>
           echo '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">X</button><strong>Error!</strong> No se permiten espacios en la cuenta de usuario.</div>';
           $usuario = '';
         } else {
-          $sql = "INSERT INTO 
-          usuarios (cedula, nombre, direccion, telefono, celular, barrio, ciudad, username, password, rol) 
+          $sql = "INSERT INTO
+          usuarios (cedula, nombre, direccion, telefono, celular, barrio, ciudad, username, password, rol)
           VALUES ('$cedula','$nombre','$direccion','$telefono','$celular','$barrio','$ciudad','$usuario','$contra','$tipo')";
           querySimple($sql);
           $numero = 0;
@@ -230,6 +230,6 @@ require_once('partials/header.php'); ?>
     </div>
   </div>
   <?php
-  require_once('partials/feet.php'); 
-  require_once('partials/footer.php'); 
+  require_once('partials/feet.php');
+  require_once('partials/footer.php');
   ?>

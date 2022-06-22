@@ -2,9 +2,7 @@
 error_reporting(E_ERROR);
 session_start();
 require_once('app/php_conexion.php');
-if ($_SESSION['rol'] !== 'Administrador' && $_SESSION['rol'] !== 'Empleado' ) {
-    header('location:error.php');
-}
+require_once 'helper/sessionCheck.php';
 $usuario = $_SESSION['username'];
 $aleatorio = mt_rand(20000, 40000);
 $cans = querySimple("SELECT * FROM usuarios where usu='$usuario'");
@@ -20,7 +18,7 @@ if (!empty($_POST['tmp_cantidad']) and !empty($_POST['tmp_nombre']) and !empty($
     $fechay = date("d-m-Y");
     $tmp_importe = $tmp_cantidad * $tmp_valor;
     $sql = "INSERT INTO temp
- (cod, nom, costo, cant, importe, existencia,iva, usu) 
+ (cod, nom, costo, cant, importe, existencia,iva, usu)
  VALUES  ('$tmp_codigo','$tmp_nombre','$tmp_valor','$tmp_importe','$tmp_cantidad','$tmp_iva','$usuario')";
     querySimple($sql);
 }
@@ -119,7 +117,7 @@ require_once "partials/header.php"
                             <button type="button" class="close" data-dismiss="alert">×</button>
                             <strong>Producto no encontrado en la base de datos<br>
                             <a href="crear_producto.php" target="admin" role="button" class="btn btn-success">
-                            Crear Nuevo Producto 
+                            Crear Nuevo Producto
                             </a></strong>
                             </div>';
                         }
@@ -160,10 +158,10 @@ require_once "partials/header.php"
                             //            }else{$mboton="btn";}}else{$_SESSION['venta'];  $vboton="btn btn-primary";}
                             ?>
         <!--            <strong>Transaccion:-->
-        <!--                <button type="button" class="btn btn-primary--><?php //echo $vboton; 
+        <!--                <button type="button" class="btn btn-primary--><?php //echo $vboton;
                                                                             ?>
         <!--" onClick="window.location='php_caja.php?tventa=venta'"><i class="fa fa-bars"></i> P. Publico</button>-->
-        <!--                <button type="button" class="btn btn-primary--><?php //echo $mboton; 
+        <!--                <button type="button" class="btn btn-primary--><?php //echo $mboton;
                                                                             ?>
         <!--" onClick="window.location='php_caja.php?tventa=mayoreo'"><i class="fa fa-bars"></i> P. Costo</button></strong>-->
         <!--        </div>-->
@@ -540,7 +538,7 @@ require_once "partials/header.php"
             //             $('#codigo').flexdatalist({ minLength: 3,
 
             // noResultsText: '<div class="alert alert-danger" align="center"><button type="button" class="close" data-dismiss="alert">×</button><strong>Producto no encontrado en la base de datos</strong>',
-            //  toggleSelected: true, 
+            //  toggleSelected: true,
             //  searchContain: true,
             //  toggleSelected: true,
 

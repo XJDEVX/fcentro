@@ -6,9 +6,7 @@ if (strlen(session_id()) < 1) {
 require_once 'app/php_conexion.php';
 $usu = $_SESSION['username'];
 $tipo_usu = $_SESSION['rol'];
-if ($tipo_usu !== 'Administrador' && $tipo_usu !== 'Empleado' ) {
-    header('location:error.php');
-}
+require_once 'helper/sessionCheck.php';
 $id = '';
 $nombrecli = '';
 $cedula = '';
@@ -56,8 +54,8 @@ require 'partials/header.php'; ?>
             $can = querySimple("SELECT * FROM clientes WHERE id=$id");
             if ($dato = mysqli_fetch_array($can)) {
                 if ($boton == 'Actualizar Cliente') {
-                    $xSQL = "UPDATE clientes 
-                    SET nombrecli='$nombrecli',cedula='$cedula',direc='$direc',celular='$celular' 
+                    $xSQL = "UPDATE clientes
+                    SET nombrecli='$nombrecli',cedula='$cedula',direc='$direc',celular='$celular'
                     WHERE id=$id";
                     querySimple($xSQL);
                     echo '  <div class="alert alert-success my-2"><button type="button" class="close" data-dismiss="alert">x</button>
@@ -66,10 +64,10 @@ require 'partials/header.php'; ?>
                     echo ' <div class="alert alert-danger my-2"><button type="button" class="close" data-dismiss="alert">x</button><strong>Error! </strong>El numero de documento que ingreso le pertenece al cliente ' . $dato['nombrecli'] . '</div>';
                 }
             } else {
-                $sql = "INSERT INTO clientes (nombrecli, cedula, celular, direc) 
+                $sql = "INSERT INTO clientes (nombrecli, cedula, celular, direc)
                              VALUES ('$nombrecli','$cedula','$celular','$direc')";
                 querySimple($sql);
-                
+
                 echo '  <div class="alert alert-success my-2"><button type="button" class="close" data-dismiss="alert">x</button>
                                   <strong>Cliente!</strong> Guardado con Exito</div>';
                 $id = '';
@@ -139,7 +137,7 @@ require 'partials/header.php'; ?>
             </div>
         </div>
     </div>
-    <?php 
+    <?php
     require_once('partials/feet.php');
     require_once('partials/footer.php');
     ?>

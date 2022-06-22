@@ -4,9 +4,7 @@ if (strlen(session_id()) < 1) {
     session_start();
 }
 require 'app/php_conexion.php';
-if ($_SESSION['rol'] !== 'Administrador' && $_SESSION['rol'] !== 'Empleado') {
-    header('location:error.php');
-}
+// require_once 'helper/sessionCheck.php';
 $usuario = $_SESSION['username'];
 $aleatorio = mt_rand(20000, 40000);
 $cans = mysqli_query($con, "SELECT * FROM usuarios WHERE username='$usuario'");

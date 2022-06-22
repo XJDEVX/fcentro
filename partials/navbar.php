@@ -3,14 +3,12 @@
 <body class="sidebar-dark sidebar-icon-only" id="body">
     <div class="container-scroller">
         <!-- partial:partials/_navbar.html -->
-        <nav id="topMenu" class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row default-layout-navbar shadow">
+        <nav id="topMenu" class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row default-layout-navbar shadow-sm">
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
                 <a class="navbar-brand brand-logo text-white" target="admin" href="empresa.php">
-                    <!-- <img src="assets/images/logo.svg" alt="logo" /> -->
                     <?= APP_NAME ?>
                 </a>
                 <a class="navbar-brand brand-logo-mini text-white" target="admin" href="empresa.php">
-                    <!-- <img src="assets/images/logo-mini.svg" alt="logo" /> -->
                     FC
                 </a>
             </div>

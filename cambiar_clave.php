@@ -4,9 +4,7 @@ if (strlen(session_id()) < 1) {
   session_start();
 }
 require_once('app/php_conexion.php');
-if ($_SESSION['rol'] !== 'Administrador' && $_SESSION['rol'] !== 'Empleado' ) {
-  header('location:error.php');
-} 
+require_once 'helper/sessionCheck.php';
 $usuario = $_SESSION['username'];
 require_once('partials/header.php');
 ?>
@@ -51,7 +49,7 @@ require_once('partials/header.php');
           if (!empty($_POST['c1']) and !empty($_POST['c2']) and !empty($_POST['contra'])) {
             if ($_POST['c1'] == $_POST['c2']) {
               $contra = hash('SHA256', $_POST['contra']);
-              $can = querySimple("SELECT * FROM usuarios WHERE username='" . $usuario . "' 
+              $can = querySimple("SELECT * FROM usuarios WHERE username='" . $usuario . "'
               and password='" . $contra . "'");
               if ($dato = mysqli_fetch_array($can)) {
                 $cnueva = hash('SHA256', $_POST['c2']);

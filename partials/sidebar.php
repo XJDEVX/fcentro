@@ -126,12 +126,12 @@
                     </ul>
                 </div>
             </li>
-            <!-- <li class="nav-item">
-            <a class="nav-link" href="construct.php">
+            <li class="nav-item">
+            <a class="nav-link" href="ajustes.php" target="admin">
                 <i class="fas fa-cogs menu-icon"></i>
                 <span class="menu-title">Ajustes</span>
             </a>
-        </li> -->
+        </li>
         <?php endif; ?>
     </ul>
 </nav>

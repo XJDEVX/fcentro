@@ -355,4 +355,13 @@ switch ($actionRequest) {
         include_once '../helper/processAjax.php';
         echo json_encode($resultOutpout);
         break;
+    case 'getEmpresaData':
+        $sql = "SELECT * FROM empresa WHERE id='1'";
+        $result = queryRow($sql);
+        echo json_encode([
+            'name' => $result['name'],
+            'cuota_percent' => $result['cuota_percent'],
+            'mora_percent' => $result['mora_percent']
+        ]);
+        break;
 }

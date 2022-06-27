@@ -450,7 +450,7 @@ require_once "partials/header.php";
                                 <div class="col-md-4">
                                     <!-- <a href="#myContado" role="button" class="btn btn-block btn-success btn-lg" id="bt" data-toggle="modal"><i class="fa fa-shopping-cart"></i> VENDER!</a> -->
 
-                                    <a href="procesarCredito.php" class="btn btn-block btn-success btn-lg" target="admin"><i class="fa fa-shopping-cart"></i> Proceder a los detalles</a>
+                                    <a href="procesarCredito.php" class="btn btn-success btn-lg" target="admin"><i class="fa fa-shopping-cart"></i> Proceder a los detalles</a>
 
                                     <!-- este es el codigo que realiza la funcion print con el teclado-->
                                     <script type="text/javascript">
@@ -846,15 +846,6 @@ require_once "partials/header.php";
 
 
 
-        function vuelto() {
-            caja = document.forms["contado"].elements;
-            var ccpago = Number(caja["ccpago"].value);
-            var tpagar = Number(caja["tpagar"].value);
-            resultado = ccpago - tpagar;
-            if (!isNaN(resultado)) {
-                caja["resultado"].value = ccpago - tpagar;
-            }
-        }
         $('#nombrecli').select2()
         var cliente = $('#nombrecli');
         cliente.on('change', function(e) {

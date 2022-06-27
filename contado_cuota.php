@@ -22,7 +22,7 @@ if ($cfactura == 1) {
 } //si es primera factura colocar que empieze en 1000
 // $hoy=$fechay=date("Y-m-d");
 // $fecha = date_format('Y-m-d', strtotime($_GET['fecha']));
-$fecha = $_GET['fecha'] != 0 ? $_GET['fecha'] : strftime('%Y-%m-%d');
+$fecha = isset($_GET['fecha']) ? $_GET['fecha'] : strftime('%Y-%m-%d');
 $tipo = isset($_GET['tipo']) ? $_GET['tipo'] : '';
 if ($_GET['button'] == 'FACTURAR') {
     // LOGICA VENTA A CUOTAS
@@ -37,6 +37,7 @@ if ($_GET['button'] == 'FACTURAR') {
     $montoInteres = (int) $_GET['monto_interes'];
     $montoPorCuota = $_GET['monto_por_cuota'];
     $primera_entrega = $_GET['primera_entrega'];
+    $montoEntrega = isset($_GET['monto-entrega']) ? $_GET['monto-entrega'] : '0';
 
     $t_importe = 0;
 
@@ -78,19 +79,26 @@ if ($_GET['button'] == 'FACTURAR') {
                                         '$importe','$iva','$iva1', '$iva2','$totalIva','$tpagar','$tipo')";
             $querySimpleDetalle = querySimple($detalle_sql2);
 
+
             ////////////// CREAR CREDITO ////////////////////////
             $detalleID = queryID($querySimpleDetalle);
 
             $fechaInicio = Carbon::now();
             $fechaFin = Carbon::now()->addMonth($cuotas);
 
+            // dd([
+            //     $nombrecli, $usuario, $detalleID, $fechaInicio, $fechaFin, $entrega, $interes, $cuotas, $montoInteres
+            // ]);
+
             $sqlCredito = "INSERT INTO credito ( cliente, usuario_caja, detalle_id, fecha_inicio,
-                                fecha_fin, entrega, interes, total_cuotas, total_con_interes )
+                                fecha_fin, entrega, interes, total_cuotas, total_con_interes, monto_entrega )
                                 VALUES ( '$nombrecli', '$usuario', $detalleID, '$fechaInicio',
-                                '$fechaFin', '$entrega', $interes, $cuotas, $montoInteres )";
+                                '$fechaFin', '$entrega', $interes, $cuotas, $montoInteres, '$montoEntrega' )";
 
 
             $querySimpleCredito = querySimple($sqlCredito);
+
+            // dd($querySimpleCredito);
 
             /////////////// CREAR CUOTAS /////////////////////////
             $creditoID = queryID($querySimpleCredito);

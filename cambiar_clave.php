@@ -9,19 +9,12 @@ $usuario = $_SESSION['username'];
 require_once('partials/header.php');
 ?>
 </head>
-
 <body data-spy="scroll" data-target=".bs-docs-sidebar">
-  <div class="container-fluid my-4">
-    <table width="80%" border="0" class="table">
-      <tr class="info">
-        <td colspan="2">
-          <center><strong><i class="fa fa-lock"></i> Cambiar Contraseña</strong></center>
-        </td>
-      </tr>
-      <tr>
-        <td width="50%">
-          <?= $_SESSION['rol'] ?>
-          <form name="form1" method="post" action="">
+  <div class="container-fluid my-4 px-4">
+    <h2>Cambia tu clave o contraseña</h2>
+    <div class="row">
+      <div class="col-md-6">
+         <form name="form1" method="post" class="my-4" >
             <div class="form-group">
               <label>Contraseña Antigua: </label>
               <input type="password" placeholder="Ingrese su Contraseña Actual" name="contra" class="form-control"
@@ -35,16 +28,13 @@ require_once('partials/header.php');
             <div class="form-group">
               <label>Repita Nueva Contraseña: </label>
               <input type="password" placeholder="Repita su nueva Contraseña" name="c2" class="form-control" id="c2"
-                required><br><br>
+                required>
             </div>
             <div class="form-group">
-              <button type="submit" name="button" id="button" class="btn btn-primary"><i class="fa fa-unlock-alt"></i>
+              <button type="submit" name="button" id="button" class="btn btn-primary btn-block"><i class="fa fa-unlock-alt"></i>
                 Cambiar Contraseña</button>
             </div>
           </form>
-        </td>
-        <td width="50%">
-          <br><br><br><br><br><br>
           <?php
           if (!empty($_POST['c1']) and !empty($_POST['c2']) and !empty($_POST['contra'])) {
             if ($_POST['c1'] == $_POST['c2']) {
@@ -57,25 +47,24 @@ require_once('partials/header.php');
                 querySimple($sql);
                 echo '<div class="alert alert-success">
                       <button type="button" class="close" data-dismiss="alert">×</button>
-                      <strong>Contraseña!</strong> Actualizada con exito
+                      <strong>La Contraseña!</strong> ha sido actualizada con exito
                     </div>';
               } else {
                 echo '<div class="alert alert-danger">
                       <button type="button" class="close" data-dismiss="alert">×</button>
-                      <strong>Contraseña!</strong> Digitada no corresponde a la antigua
+                      <strong>La Contraseña!</strong> Digitada no corresponde a la antigua
                     </div>';
               }
             } else {
               echo '<div class="alert alert-danger">
                       <button type="button" class="close" data-dismiss="alert">×</button>
-                      <strong>Las dos Contraseña!</strong> Digitadas no soy iguales
+                      <strong>Las Contraseñas!</strong> Digitadas no soy iguales
                     </div>';
             }
           }
           ?>
-        </td>
-      </tr>
-    </table>
+      </div>
+    </div>
   </div>
   <?php
   require_once('partials/feet.php');

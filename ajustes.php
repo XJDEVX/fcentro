@@ -36,7 +36,7 @@ require_once 'partials/header.php';
                                 <input type="number" id="mora-percent" name="mora-percent" class="form-control" />
                             </div>
                             <div class="col-md-12 mt-4">
-                                <button type="submit" class="btn btn-success">Aplicar Cambios</button>
+                                <button type="submit" class="btn btn-primary">Aplicar Cambios</button>
                             </div>
                         </div>
                     </form>

@@ -13,13 +13,35 @@ require_once 'partials/header.php'; ?>
     <div class="container-fluid pt-4 p-3">
         <div class="row mt-5 mt-lg-0 alig-items-center">
             <div class="col-md-12">
-                <h4>Detalles del Credito</h4>
-                <p>Total</p>
-                <?= $_SESSION['neto']; ?>
-                <p></p>
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4>Detalles del Credito</h4>
+                    <a href="caja_credito.php" target="admin" class="btn btn-light">
+                        <i class="fas fa-arrow-left"></i>
+                        Ir atras
+                    </a>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-md-4">
+                        <div class="alert alert-info">
+                            <h5>Total: <?= number_format( $_SESSION['neto'], 0, ',', '.' ); ?> GS</h5>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="alert alert-warning">
+                            <h5>Entrega: <?= number_format( $_SESSION['neto'], 0, ',', '.' ); ?> GS</h5>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="alert alert-success">
+                            <h5>Saldo Total: <?= number_format( $_SESSION['neto'], 0, ',', '.' ); ?> GS</h5>
+                        </div>
+                    </div>
+                </div>
                  <form id="form1" name="contado" method="get" action="contado_cuota.php">
+                    <input type="hidden" name="ccpago" value=<?= $_SESSION['neto'] ?> >
                         <div class="row">
                             <div class="col-md-4">
+
                                 <div class="form-group">
                                     <label>NOMBRE DEL CLIENTE </label>
                                     <select id="nombrecli" class="form-control mySelect" required="" name="nombrecli">
@@ -56,7 +78,11 @@ require_once 'partials/header.php'; ?>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="cuotas">Numero de Cuotas</label>
-                                    <input name="cuotas" placeholder="Ingrese la cantidad" type="number" id="cuotas" class="form-control" required />
+                                    <div class="d-flex align-items-center">
+                                        <button class="btn btn-primary py-3 rounded-0" id="min-btn"><i class="fas fa-minus"></i></button>
+                                        <input name="cuotas" placeholder="Ingrese la cantidad" type="number" id="cuotas" class="form-control rounded-0" required readonly />
+                                        <button class="btn btn-dark py-3 rounded-0" id="max-btn"><i class="fas fa-plus"></i></button>
+                                    </div>
                                 </div>
                                 <!-- <div class="form-group">
                                     <label for="vencimiento">Vencimiento de la Primera cuota</label>
@@ -85,11 +111,7 @@ require_once 'partials/header.php'; ?>
                                     <input type="number" readonly class="form-control form-control-sm" name="monto_por_cuota" id="monto_por_cuota">
                                 </div>
 
-                                <div class="input-group mb-3">
-                                    <div class="d-flex">
-                                        <button type="submit" class="mt-4 ml-2 btn btn-dark btn-lg btn-block" name="button" id="button" value="FACTURAR"><i class="fa fa-money" aria-hidden="true"></i> PROCESAR VENTA A CREDITO</button>
-                                    </div>
-                                </div>
+
                             </div>
 
                             <div class="col-md-4">
@@ -107,7 +129,14 @@ require_once 'partials/header.php'; ?>
                                 </div>
                                 <div class="form-group" id='valor-entregar'>
                                     <label for="primera_entrega">Valor a Entregar</label>
-                                    <input name="primera_entrega" id="primera_entrega" placeholder="Ingrese el monto" value="0" type="number" class="form-control" required />
+                                    <input name="primera_entrega" id="primera_entrega" placeholder="Ingrese el monto" value="0" type="number" class="form-control" required readonly />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-group mb-3">
+                                <div class="d-flex w-50">
+                                    <button type="submit" class="mt-4 ml-2 btn btn-dark btn-lg w-100" name="button" id="button" value="FACTURAR"><i class="fa fa-money" aria-hidden="true"></i> PROCESAR VENTA A CREDITO</button>
                                 </div>
                             </div>
                         </div>
@@ -117,9 +146,10 @@ require_once 'partials/header.php'; ?>
                 </div>
 
 <?php require_once "partials/footer.php" ?>
+<script src="assets/js/quotesActions.js"></script>
 <script>
-    var cliente = $('#nombrecli');
-      const tPagar = document.getElementById('tpagar')
+        var cliente = $('#nombrecli');
+        const tPagar = document.getElementById('tpagar')
         const cuotas = document.getElementById('cuotas')
         const interes = document.getElementById('interes')
         const montoInteres = document.getElementById('monto_interes')
@@ -127,6 +157,53 @@ require_once 'partials/header.php'; ?>
         const primeraEntrega = document.getElementById('primera_entrega')
         const siEntrega = document.getElementById('si_entrega')
         const noEntrega = document.getElementById('no_entrega')
+        const minBtn = document.getElementById('min-btn')
+        const maxBtn = document.getElementById('max-btn')
+
+        let count = localStorage.getItem('nro-cuotas') || 1;
+
+        const handleMinCount = (e) => {
+            e.preventDefault()
+            count--
+            if( count < 1 ) count = 1
+            cuotas.value = count
+            localStorage.setItem('nro-cuotas', count)
+            quotesActions()
+        }
+
+        const handleMaxCount = (e) => {
+            e.preventDefault()
+            count++
+            if( count > 24 ) count = 24
+            cuotas.value = count
+            localStorage.setItem('nro-cuotas', count)
+            quotesActions()
+        }
+
+        minBtn.addEventListener('click', handleMinCount)
+        maxBtn.addEventListener('click', handleMaxCount)
+        let quoteTax = localStorage.getItem('quote-tax') || 0
+        document.addEventListener( 'DOMContentLoaded', () => {
+
+            cuotas.value = 1
+            const getCuotasPercentFunc = async () => {
+                try {
+                    const resp = await fetch('/php_action/actions.php?request=getEmpresaData')
+                    const {cuota_percent} = await resp.json()
+                    quoteTax = cuota_percent
+                    localStorage.setItem('quote-tax', quoteTax)
+                } catch (err) {
+                    console.log(err)
+                }
+            }
+            quotesActions()
+            getCuotasPercentFunc()
+        })
+
+        siEntrega.addEventListener('change', () => {
+            primeraEntrega.removeAttribute('readonly')
+            console.log('fsdfsfsfsfs')
+        })
 
       cliente.select2()
 
@@ -149,220 +226,6 @@ require_once 'partials/header.php'; ?>
                 }
             })
         })
-
-         const percent = 100
-        cuotas.addEventListener('input', () => {
-            const cuotaValue = parseInt(cuotas.value)
-
-            const numOfCuotas = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]
-            let actionPercent, action
-
-            if (cuotaValue > 0 && cuotaValue <= numOfCuotas.length) {
-                if( cuotaValue <= 4 ) {
-                    interes.value = 0
-                    actionPercent = parseInt(percent) + parseInt(interes.value)
-                    action = parseInt((tPagar.value * actionPercent) / 100)
-                    montoInteres.value = action
-                }
-
-                for (let index = 5; index < numOfCuotas.length; index++) {
-                    if( cuotaValue == index ) {
-                        interes.value = 5
-                        actionPercent = parseInt(percent) + parseInt(interes.value)
-                        action = parseInt((tPagar.value * actionPercent) / 100)
-                        montoInteres.value = action
-                    }
-
-                }
-
-                // if( cuotaValue >= 5 ) {
-                //     interes.value = 5
-                //     actionPercent = parseInt(percent) + parseInt(interes.value)
-                //     action = parseInt((tPagar.value * actionPercent) / 100)
-                //     montoInteres.value = action
-                // }
-            }
-
-            // numOfCuotas.forEach( num => {
-            //     if (num <= 4) {
-            //         interes.value = 0
-            //         actionPercent = parseInt(percent) + parseInt(interes.value)
-            //         action = parseInt((tPagar.value * actionPercent) / 100)
-            //         montoInteres.value = action
-            //     }
-            //     if (num > 4) {
-            //         interes.value = 5
-            //         actionPercent = parseInt(percent) + parseInt(interes.value)
-            //         action = parseInt((tPagar.value * actionPercent) / 100)
-            //         montoInteres.value = action
-            //     }
-            // })
-
-
-            // switch (cuotaValue) {
-            //     case 1:
-            //         interes.value = 0
-            //         actionPercent = parseInt(percent) + parseInt(interes.value)
-            //         action = parseInt((tPagar.value * actionPercent) / 100)
-            //         montoInteres.value = action
-            //         break;
-            //     case 2:
-            //         interes.value = 0
-            //         actionPercent = parseInt(percent) + parseInt(interes.value)
-            //         action = parseInt((tPagar.value * actionPercent) / 100)
-            //         montoInteres.value = action
-            //         break;
-            //     case 3:
-            //         interes.value = 0
-            //         actionPercent = parseInt(percent) + parseInt(interes.value)
-            //         action = parseInt((tPagar.value * actionPercent) / 100)
-            //         montoInteres.value = action
-            //         break;
-            //     case 4:
-            //         interes.value = 0
-            //         actionPercent = parseInt(percent) + parseInt(interes.value)
-            //         action = parseInt((tPagar.value * actionPercent) / 100)
-            //         montoInteres.value = action
-            //         break;
-            //     case 5:
-            //         interes.value = 15
-            //         actionPercent = parseInt(percent) + parseInt(interes.value)
-            //         action = parseInt((tPagar.value * actionPercent) / 100)
-            //         montoInteres.value = action
-            //         break;
-            //     case 6:
-            //         interes.value = 18
-            //         actionPercent = parseInt(percent) + parseInt(interes.value)
-            //         action = parseInt((tPagar.value * actionPercent) / 100)
-            //         montoInteres.value = action
-            //         break;
-            //     case 7:
-            //         interes.value = 21
-            //         actionPercent = parseInt(percent) + parseInt(interes.value)
-            //         action = parseInt((tPagar.value * actionPercent) / 100)
-            //         montoInteres.value = action
-            //         break;
-            //     case 8:
-            //         interes.value = 24
-            //         actionPercent = parseInt(percent) + parseInt(interes.value)
-            //         action = parseInt((tPagar.value * actionPercent) / 100)
-            //         montoInteres.value = action
-            //         break;
-            //     case 9:
-            //         interes.value = 27
-            //         actionPercent = parseInt(percent) + parseInt(interes.value)
-            //         action = parseInt((tPagar.value * actionPercent) / 100)
-            //         montoInteres.value = action
-            //         break;
-            //     case 10:
-            //         interes.value = 30
-            //         actionPercent = parseInt(percent) + parseInt(interes.value)
-            //         action = parseInt((tPagar.value * actionPercent) / 100)
-            //         montoInteres.value = action
-            //         break;
-            //     case 11:
-            //         interes.value = 33
-            //         actionPercent = parseInt(percent) + parseInt(interes.value)
-            //         action = parseInt((tPagar.value * actionPercent) / 100)
-            //         montoInteres.value = action
-            //         break;
-            //     case 12:
-            //         interes.value = 36
-            //         actionPercent = parseInt(percent) + parseInt(interes.value)
-            //         action = parseInt((tPagar.value * actionPercent) / 100)
-            //         montoInteres.value = action
-            //         break;
-            //     case 13:
-            //         interes.value = 39
-            //         actionPercent = parseInt(percent) + parseInt(interes.value)
-            //         action = parseInt((tPagar.value * actionPercent) / 100)
-            //         montoInteres.value = action
-            //         break;
-            //     case 14:
-            //         interes.value = 42
-            //         actionPercent = parseInt(percent) + parseInt(interes.value)
-            //         action = parseInt((tPagar.value * actionPercent) / 100)
-            //         montoInteres.value = action
-            //         break;
-            //     case 15:
-            //         interes.value = 45
-            //         actionPercent = parseInt(percent) + parseInt(interes.value)
-            //         action = parseInt((tPagar.value * actionPercent) / 100)
-            //         montoInteres.value = action
-            //         break;
-            //     case 16:
-            //         interes.value = 48
-            //         actionPercent = parseInt(percent) + parseInt(interes.value)
-            //         action = parseInt((tPagar.value * actionPercent) / 100)
-            //         montoInteres.value = action
-            //         break;
-            //     case 17:
-            //         interes.value = 51
-            //         actionPercent = parseInt(percent) + parseInt(interes.value)
-            //         action = parseInt((tPagar.value * actionPercent) / 100)
-            //         montoInteres.value = action
-            //         break;
-            //     case 18:
-            //         interes.value = 54
-            //         actionPercent = parseInt(percent) + parseInt(interes.value)
-            //         action = parseInt((tPagar.value * actionPercent) / 100)
-            //         montoInteres.value = action
-            //         break;
-            //     case 19:
-            //         interes.value = 57
-            //         actionPercent = parseInt(percent) + parseInt(interes.value)
-            //         action = parseInt((tPagar.value * actionPercent) / 100)
-            //         montoInteres.value = action
-            //         break;
-            //     case 20:
-            //         interes.value = 60
-            //         actionPercent = parseInt(percent) + parseInt(interes.value)
-            //         action = parseInt((tPagar.value * actionPercent) / 100)
-            //         montoInteres.value = action
-            //         break;
-            //     case 21:
-            //         interes.value = 63
-            //         actionPercent = parseInt(percent) + parseInt(interes.value)
-            //         action = parseInt((tPagar.value * actionPercent) / 100)
-            //         montoInteres.value = action
-            //         break;
-            //     case 22:
-            //         interes.value = 66
-            //         actionPercent = parseInt(percent) + parseInt(interes.value)
-            //         action = parseInt((tPagar.value * actionPercent) / 100)
-            //         montoInteres.value = action
-            //         break;
-            //     case 23:
-            //         interes.value = 69
-            //         actionPercent = parseInt(percent) + parseInt(interes.value)
-            //         action = parseInt((tPagar.value * actionPercent) / 100)
-            //         montoInteres.value = action
-            //         break;
-            //     case 24:
-            //         interes.value = 72
-            //         actionPercent = parseInt(percent) + parseInt(interes.value)
-            //         action = parseInt((tPagar.value * actionPercent) / 100)
-            //         montoInteres.value = action
-            //         break;
-            // }
-
-            const calcMontoValue = Math.round(parseInt(montoInteres.value / cuotaValue))
-            montoPorCuota.value = calcMontoValue
-            // Controlar si se realiza la primera entrega
-            siEntrega.addEventListener('click', function() {
-                $('#no_entrega').attr('checked', false)
-                $('#si_entrega').attr('checked', true)
-                primeraEntrega.value = calcMontoValue
-            })
-            noEntrega.addEventListener('click', function() {
-                $('#si_entrega').attr('checked', false)
-                $('#no_entrega').attr('checked', true)
-                primeraEntrega.value = 0
-            })
-
-
-        })
-
         const ventas = document.querySelectorAll('.ventaInput'),
             selects = document.querySelectorAll('.selectVentaInput')
 </script>
